@@ -14,6 +14,16 @@ export default function TaskModal({ task, updateTask }: TaskModalProps) {
     updateTask(taskData);
   };
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    setTaskData((oldData) => ({
+      ...oldData,
+      [field]: e.target.value,
+    }));
+  };
+
   return (
     <div>
       <hr />
@@ -24,26 +34,14 @@ export default function TaskModal({ task, updateTask }: TaskModalProps) {
           type="text"
           name="title"
           value={taskData.title}
-          onChange={(event) =>
-            setTaskData((oldData) => {
-              const newData = { ...oldData };
-              newData.title = event.target.value;
-              return newData;
-            })
-          }
+          onChange={(e) => handleChange(e, "title")}
         ></input>
         <label htmlFor="description">Description</label>
         <input
           type="text"
           name="description"
           value={taskData.description}
-          onChange={(event) =>
-            setTaskData((oldData) => {
-              const newData = { ...oldData };
-              newData.description = event.target.value;
-              return newData;
-            })
-          }
+          onChange={(e) => handleChange(e, "description")}
         ></input>
         <button type="submit">Save</button>
       </form>

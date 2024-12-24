@@ -2,10 +2,10 @@ import { FormEvent, useState } from "react";
 import { Task } from "../../../shared/types";
 
 type TaskFormProps = {
-  createNewTask: (taskData: Task) => void;
+  createTask: (taskData: Task) => void;
 };
 
-function TaskForm({ createNewTask }: TaskFormProps) {
+function TaskForm({ createTask }: TaskFormProps) {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
@@ -16,8 +16,9 @@ function TaskForm({ createNewTask }: TaskFormProps) {
       description,
       completed: false,
     };
-
-    createNewTask(taskData);
+    setTitle("");
+    setDescription("");
+    createTask(taskData);
   };
 
   return (
